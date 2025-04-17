@@ -10,7 +10,7 @@ const Products = ({ carrito, setCarrito }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/products/getproducts/")
+      .get("https://smartcart-server-dee6.onrender.com/api/products/getproducts/")
       .then((response) => setProducts(response.data))
       .catch((error) => console.error("Error al cargar los productos", error));
   }, []);

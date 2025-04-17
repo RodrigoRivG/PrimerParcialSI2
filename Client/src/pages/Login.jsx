@@ -45,7 +45,7 @@ const Login = () => {
     // Conectamos con el backend en Django
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/login/",
+        "https://smartcart-server-dee6.onrender.com/api/auth/login/",
         values
       );
 

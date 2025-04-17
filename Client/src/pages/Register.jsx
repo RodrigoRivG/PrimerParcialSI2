@@ -56,7 +56,7 @@ const Register = () => {
     //respuesta del backend
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/register/",
+        "https://smartcart-server-dee6.onrender.com/api/auth/register/",
         values
       );
       alert("Cuenta creada exitosamente. Ahora puedes iniciar sesión.");

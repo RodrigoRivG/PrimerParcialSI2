@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _fetchProductos() async {
     final response = await http.get(
-      Uri.parse('http://192.168.0.6:8000/api/products/getproducts'),
+      Uri.parse('https://smartcart-server-dee6.onrender.com/api/products/getproducts/'),
     );
 
     if (response.statusCode == 200) {
