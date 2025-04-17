@@ -34,7 +34,9 @@ JWT_EXP_DELTA_SECONDS = 86400 #segundos = duracion 1 dia
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.6', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['192.168.0.6', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+
 
 
 # Application definition
