@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.config(os.environ.get("DATABASE_URL"))
 }
 
 
@@ -112,6 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
+    "https://primerparcialsi2-production.up.railway.app",
 ]
 
 CORS_ALLOWED_ORIGINS = [
