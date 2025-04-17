@@ -3,6 +3,7 @@
 from django.db import migrations, models
 
 #Me estoy volviendo loco
+# locoooooo
 
 class Migration(migrations.Migration):
 
