@@ -41,6 +41,10 @@ def user_login(request):
 
 @csrf_exempt
 def user_register(request):
+
+    if request.method == 'GET':
+        return JsonResponse({'mensaje': 'Funciona correctamente 🎉'})
+
     data = json.loads(request.body)
 
     nombre = data.get('name')
