@@ -23,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     setState(() => _isLoading = true);
 
-    final url = Uri.parse('https://smartcart-server-dee6.onrender.com/api/auth/register/');
+    final url = Uri.parse('https://primerparcialsi2-production.up.railway.app/api/auth/register/');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'aplication/json'},

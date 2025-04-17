@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = true;
     });
 
-    final url = Uri.parse('https://smartcart-server-dee6.onrender.com/api/auth/login/');
+    final url = Uri.parse('https://primerparcialsi2-production.up.railway.app/api/auth/login/');
     final response = await http.post(
       url,
       headers: {'Content-Type': 'application/json'},

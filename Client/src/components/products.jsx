@@ -10,7 +10,7 @@ const Products = ({ carrito, setCarrito }) => {
 
   useEffect(() => {
     axios
-      .get("https://smartcart-server-dee6.onrender.com/api/products/getproducts/")
+      .get("https://primerparcialsi2-production.up.railway.app/api/products/getproducts/")
       .then((response) => setProducts(response.data))
       .catch((error) => console.error("Error al cargar los productos", error));
   }, []);
