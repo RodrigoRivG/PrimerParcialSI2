@@ -16,17 +16,7 @@ class Productos(models.Model):
     imagen = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'productos'
 
 
-# no sera necesario 
-class Usuarios(models.Model):
-    nombre = models.CharField(max_length=55)
-    correo = models.CharField(unique=True, max_length=50)
-    password = models.TextField()
-    rol = models.CharField(max_length=10)
-
-    class Meta:
-        managed = False
-        db_table = 'usuarios'

@@ -7,7 +7,7 @@ class Usuarios(models.Model):
     rol = models.CharField(max_length=10)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'usuarios'
 
 
