@@ -12,8 +12,6 @@ import jwt
 
 
 # Create your views here.
-def home(request):
-    return JsonResponse({"mensaje": "El backend está funcionando correctamente 🚀"})
 
 @csrf_exempt
 def user_login(request):
