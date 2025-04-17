@@ -118,6 +118,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://rodrigorivg.github.io",
 ]
 
 # Para permitir cookies, si usas auth con sesiones o tokens en headers
