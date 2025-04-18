@@ -77,4 +77,17 @@ def generar_token(usuario):
     return token
 
 
+# una funcion que guarde y registre la bitacora
+def regBitacora(request):
+    if request.method == 'POST':
+        try:
+            data = json.load(request.body)
+
+            ip_dir = data.get('ip')
+            hora = data.get('hr')
+            fecha = data.get('fecha')
+            accion = data.get('act')
+
+            # aqui llamamos al model de Bitacora
+
 

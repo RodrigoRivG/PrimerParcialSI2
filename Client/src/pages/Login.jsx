@@ -45,7 +45,7 @@ const Login = () => {
     // Conectamos con el backend en Django
     try {
       const response = await axios.post(
-        "https://primerparcialsi2-production.up.railway.app/api/auth/login/",
+        "https://primerparcialsi2-production.up.railway.app/api/users/login/",
         values
       );
 

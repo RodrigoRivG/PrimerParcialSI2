@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { FaUser, FaUsers, FaBox, FaUserPlus, FaChartBar } from "react-icons/fa";
+import { FaUser, FaUsers, FaBox, FaUserPlus, FaChartBar, FaBook } from "react-icons/fa";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -28,6 +28,11 @@ const AdminPanel = () => {
       ruta: "admin/reportes",
       icon: <FaChartBar size={30} />,
     },
+    {
+      nombre: "Bitácora",
+      ruta: "admin/bitacora",
+      icon: <FaBook size={30} />
+    }
   ];
 
   return (

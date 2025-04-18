@@ -56,7 +56,7 @@ const Register = () => {
     //respuesta del backend
     try {
       const response = await axios.post(
-        "https://primerparcialsi2-production.up.railway.app/api/auth/register/",
+        "https://primerparcialsi2-production.up.railway.app/api/users/register/",
         values
       );
       alert("Cuenta creada exitosamente. Ahora puedes iniciar sesión.");
