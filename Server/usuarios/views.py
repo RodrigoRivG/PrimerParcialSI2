@@ -77,6 +77,7 @@ def generar_token(usuario):
     return token
 
 
+"""
 # una funcion que guarde y registre la bitacora
 def regBitacora(request):
     if request.method == 'POST':
@@ -89,5 +90,5 @@ def regBitacora(request):
             accion = data.get('act')
 
             # aqui llamamos al model de Bitacora
-
+"""
 
