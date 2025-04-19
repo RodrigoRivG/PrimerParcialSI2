@@ -39,24 +39,20 @@ def getListProductsAdmin(request):
 
 # Actualizar los campos de stock, precio y disponible en la
 # base de datos, vista del Admin
-def updateProduct(request):
+def updateProduct(request, id):
     if request.method == 'POST':
         try:
             data = json.load(request.body)
 
-            prod_id = data.get('id')
             n_precio = data.get('precio')
             n_stock = data.get('stock')
-            disponible = data.get('disponible')
 
-            producto = Productos.objects.get(id=prod_id)
+            producto = Productos.objects.get(id=id)
 
             if n_precio is not None:
                 producto.precio = n_precio
             if n_stock is not None:
                 producto.stock = n_stock
-            if disponible is not None:
-                producto.disponible = disponible
 
             producto.save()
 
