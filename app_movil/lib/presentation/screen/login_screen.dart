@@ -71,9 +71,12 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _goToRegister() {
+    /*
     Navigator.pushReplacement(context, 
       MaterialPageRoute(builder: (context) => const RegisterScreen()),
     );
+    */
+    Navigator.pushReplacementNamed(context, '/register');
   }
 
   @override

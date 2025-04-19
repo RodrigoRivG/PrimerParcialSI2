@@ -1,4 +1,7 @@
+import 'package:app_movil/models/carrito.dart';
+import 'package:app_movil/presentation/screen/carrito_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/producto.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -12,11 +15,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<Producto> _productos = [];
+  List<CarritoItem> _carrito = [];
   bool _isLoading = true;
 
   Future<void> _fetchProductos() async {
     final response = await http.get(
-      Uri.parse('https://primerparcialsi2-production.up.railway.app/api/products/getproducts/'),
+      Uri.parse(
+        'https://primerparcialsi2-production.up.railway.app/api/products/getproducts/',
+      ),
     );
 
     if (response.statusCode == 200) {
@@ -31,6 +37,31 @@ class _HomeScreenState extends State<HomeScreen> {
         const SnackBar(content: Text('Error al cargar productos')),
       );
     }
+  }
+
+  Future<void> _cerrarSesion(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+
+    Navigator.pushReplacementNamed(context, '/login');
+  }
+
+  void _agregarCarrito(Producto producto) {
+    final index = _carrito.indexWhere(
+      (item) => item.producto.id == producto.id,
+    );
+
+    setState(() {
+      if (index >= 0) {
+        _carrito[index].cantidad++; //ya existe el producto y aumentamos contador
+      } else {
+        _carrito.add(CarritoItem(producto: producto)); //nuevo producto agregado
+       } 
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${producto.nombre} añadido al carrito')),
+    );
   }
 
   @override
@@ -49,12 +80,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         actions: [
           IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => _cerrarSesion(context),
+          ),
+          IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {
               // vamos al carrito
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Carrito presionado')),
-              );
+              Navigator.push(context, MaterialPageRoute(builder: (_) => CarritoScreen(carrito: _carrito)));
             },
           ),
           IconButton(
@@ -131,18 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(
                                   width: double.infinity,
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      // Aquí podés agregar al carrito
-                                      ScaffoldMessenger.of(
-                                        context,
-                                      ).showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            '${producto.nombre} añadido',
-                                          ),
-                                        ),
-                                      );
-                                    },
+                                    onPressed: () => _agregarCarrito(producto),
                                     child: const Text('Añadir'),
                                   ),
                                 ),

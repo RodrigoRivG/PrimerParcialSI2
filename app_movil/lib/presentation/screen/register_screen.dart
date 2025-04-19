@@ -56,10 +56,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _goToLogin() {
+    /*
     Navigator.pop(
       context,
       MaterialPageRoute(builder: (context) => LoginScreen()),
     );
+    */
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
