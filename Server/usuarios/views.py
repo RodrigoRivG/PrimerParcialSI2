@@ -31,7 +31,7 @@ def user_login(request):
     
     # Registramos en bitacora
     Bitacora.objects.create(
-        usuario = usuario
+        usuario = usuario,
         fecha_hora = timezone.now(),
         ip = getIP(request),
         accion = 'login'
@@ -78,7 +78,7 @@ def user_register(request):
 
 
     return JsonResponse({'message': 'Usuario creado exitosamente'}, status=201)
-    
+
 
 def ver_bitacora(request):
     logs = Bitacora.objects.select_related.('usuario').all().orderby('-fecha_hora')
