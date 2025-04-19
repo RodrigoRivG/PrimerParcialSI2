@@ -7,12 +7,23 @@ from .models import Bitacora
 from django.http import JsonResponse
 from django.conf import settings
 from datetime import datetime, timedelta
+from django.utils import timezone
+
 
 import json
 import jwt 
 
 
 # Create your views here.
+
+def getIP(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    
+    return ip
 
 @csrf_exempt
 def user_login(request):
@@ -108,16 +119,16 @@ def generar_token(usuario):
     token = jwt.encode(payload, settings.JWT_SECRET_KEY, settings.JWT_ALGORITHM)
     return token
 
-
+"""
 def getIP(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
-        ip = x_forwarded_for.split(',').[0]
+        ip = x_forwarded_for.split(',')[0]
     else:
         ip = request.META.get('REMOTE_ADDR')
     
     return ip
-
+"""
 
 
 
