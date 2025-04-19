@@ -3,6 +3,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.views.decorators.csrf import csrf_exempt
 from .models import Usuarios
+from .models import Bitacora
 from django.http import JsonResponse
 from django.conf import settings
 from datetime import datetime, timedelta
@@ -27,6 +28,15 @@ def user_login(request):
     if not check_password(password, usuario.password):
         return JsonResponse({'error': 'La contraseña es incorrecta'}, status=401)
 
+    
+    # Registramos en bitacora
+    Bitacora.objects.create(
+        usuario = usuario
+        fecha_hora = timezone.now(),
+        ip = getIP(request),
+        accion = 'login'
+    )
+
     token = generar_token(usuario)
 
     return JsonResponse({
@@ -41,9 +51,6 @@ def user_login(request):
 
 @csrf_exempt
 def user_register(request):
-
-    if request.method == 'GET':
-        return JsonResponse({'mensaje': 'Funciona correctamente 🎉'})
 
     data = json.loads(request.body)
 
@@ -61,10 +68,35 @@ def user_register(request):
         rol = rol,
     )
 
+    # Registramos en bitacora
+    Bitacora.objects.create(
+        usuario=usuario,
+        fecha_hora=timezone.now(),
+        ip=getIP(request),
+        accion='registro'
+    )
+
+
     return JsonResponse({'message': 'Usuario creado exitosamente'}, status=201)
+    
+
+def ver_bitacora(request):
+    logs = Bitacora.objects.select_related.('usuario').all().orderby('-fecha_hora')
+    data = [
+        {
+            "usuario": log.usuario.nombre,
+            "fecha_hora": log.fecha_hora.isoformat(),
+            "ip": log.ip,
+            "accion": log.accion,
+        }
+        for log in logs
+    ]
+
+    return JsonResponse(data, safe=False)
 
 
-#aux
+# funciones auxiliares
+
 def generar_token(usuario):
     payload = {
         'id': usuario.id,
@@ -77,18 +109,15 @@ def generar_token(usuario):
     return token
 
 
-"""
-# una funcion que guarde y registre la bitacora
-def regBitacora(request):
-    if request.method == 'POST':
-        try:
-            data = json.load(request.body)
+def getIP(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',').[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    
+    return ip
 
-            ip_dir = data.get('ip')
-            hora = data.get('hr')
-            fecha = data.get('fecha')
-            accion = data.get('act')
 
-            # aqui llamamos al model de Bitacora
-"""
+
 
