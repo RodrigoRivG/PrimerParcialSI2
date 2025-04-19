@@ -81,7 +81,7 @@ def user_register(request):
 
 
 def ver_bitacora(request):
-    logs = Bitacora.objects.select_related.('usuario').all().order_by('-fecha_hora')
+    logs = Bitacora.objects.select_related('usuario').all().order_by('-fecha_hora')
     data = [
         {
             "usuario": log.usuario.nombre,
