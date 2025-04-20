@@ -51,35 +51,3 @@ def enviar_notificacion(request):
             return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
     return JsonResponse({'error': 'Método no permitido'}, status=405)
-
-"""
-def enviar_notificacion(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-
-        token = data.get('token')
-        titulo = data.get('titulo', 'sin titulo')
-        mensaje = data.get('mensaje', 'sin mensaje')
-
-        headers = {
-            'Authorization': f'key={FIREBASE_SERVER_KEY}',
-            'Content-Type': 'application/json',
-        }
-
-        payload = {
-            'to': token,
-            'notification': {
-                'title': titulo,
-                'body': mensaje
-            }
-        }
-
-        response = requests.post('https://fcm.googleapis.com/fcm/send', headers=headers, json=payload)
-
-        if response.status_code == 200:
-            return JsonResponse({'success': True, 'firebase_response': response.json()})
-        else:
-            return JsonResponse({'success': False, 'error': response.text}, status=500)
-
-    return JsonResponse({'error': 'Método no permitido'}, status=405)
-"""
