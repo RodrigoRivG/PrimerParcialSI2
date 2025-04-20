@@ -6,7 +6,7 @@ const Bitacora = () => {
 
   useEffect(() => {
     axios
-      .get("https://primerparcialsi2-production.up.railway.app/api/users/admin/bitacora/") // Ajustá la URL a tu endpoint real
+      .get("https://primerparcialsi2-production.up.railway.app/api/users/admin/bitacora/") 
       .then((res) => setRegistros(res.data))
       .catch((err) => console.error("Error al cargar la bitácora:", err));
   }, []);
