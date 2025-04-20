@@ -28,7 +28,13 @@ const Bitacora = () => {
           </thead>
           <tbody>
             {registros.map((registro, index) => {
-              const [fecha, hora] = registro.fecha_hora.split("T");
+              //const [fecha, hora] = registro.fecha_hora.split("T");
+              const fechaCompleta = new Date(registro.fecha_hora);
+              fechaCompleta.setHours(fechaCompleta.getHours() - 4);
+
+              const fecha = fechaCompleta.toISOString().split("T")[0];
+              const hora = fechaCompleta.toTimeString().substring(0, 8);
+
               return (
                 <tr key={index} className="text-center align-middle">
                   <td>{registro.usuario}</td>
