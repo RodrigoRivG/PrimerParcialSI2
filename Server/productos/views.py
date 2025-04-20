@@ -46,7 +46,7 @@ def getListProductsAdmin(request):
 def updateProduct(request, id):
     if request.method == 'POST':
         try:
-            data = json.load(request.body)
+            data = json.loads(request.body)
 
             n_precio = data.get('precio')
             n_stock = data.get('stock')
