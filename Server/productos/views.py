@@ -6,6 +6,7 @@ from .models import Productos
 # Create your views here.
 
 # Esta lista es para la vista del cliente
+@csrf_exempt
 def getListProducts(request):
     productos = Productos.objects.filter(disponible=True)
     data = []
@@ -22,6 +23,7 @@ def getListProducts(request):
     return JsonResponse(data, safe=False)
 
 # Esta lista sera solo para la vista del Admin
+@csrf_exempt
 def getListProductsAdmin(request):
     productos = Productos.objects.all()
     data = []
@@ -39,6 +41,7 @@ def getListProductsAdmin(request):
 
 # Actualizar los campos de stock, precio y disponible en la
 # base de datos, vista del Admin
+@csrf_exempt
 def updateProduct(request, id):
     if request.method == 'POST':
         try:

@@ -91,6 +91,7 @@ def user_register(request):
     return JsonResponse({'message': 'Usuario creado exitosamente'}, status=201)
 
 
+@csrf_exempt
 def ver_bitacora(request):
     logs = Bitacora.objects.select_related('usuario').all().order_by('-fecha_hora')
     data = [
