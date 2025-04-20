@@ -9,9 +9,9 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Stripe.publishableKey = 'pk_test_51RFL1uC5x86sUovdCMNfvpvao25A3jiDXOOJvcF4VnjFEn6pTSrJHNAHxbuqpDvma2hzTah8WO01wM17P4qA7MOq006yNSaOpA';
+  //Stripe.publishableKey = 'pk_test_51RFL1uC5x86sUovdCMNfvpvao25A3jiDXOOJvcF4VnjFEn6pTSrJHNAHxbuqpDvma2hzTah8WO01wM17P4qA7MOq006yNSaOpA';
 
-  await Stripe.instance.applySettings();
+  //await Stripe.instance.applySettings();
 
   runApp(const SmartCartApp());
 }

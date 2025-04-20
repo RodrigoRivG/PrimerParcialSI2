@@ -6,7 +6,7 @@ const Bitacora = () => {
 
   useEffect(() => {
     axios
-      .get("https://primerparcialsi2-production.up.railway.app/api/admin/bitacora/") // Ajustá la URL a tu endpoint real
+      .get("https://primerparcialsi2-production.up.railway.app/api/users/admin/bitacora/") // Ajustá la URL a tu endpoint real
       .then((res) => setRegistros(res.data))
       .catch((err) => console.error("Error al cargar la bitácora:", err));
   }, []);
@@ -28,7 +28,13 @@ const Bitacora = () => {
           </thead>
           <tbody>
             {registros.map((registro, index) => {
-              const [fecha, hora] = registro.fecha_hora.split("T");
+              //const [fecha, hora] = registro.fecha_hora.split("T");
+              const fechaCompleta = new Date(registro.fecha_hora);
+              fechaCompleta.setHours(fechaCompleta.getHours() - 4);
+
+              const fecha = fechaCompleta.toISOString().split("T")[0];
+              const hora = fechaCompleta.toTimeString().substring(0, 8);
+
               return (
                 <tr key={index} className="text-center align-middle">
                   <td>{registro.usuario}</td>

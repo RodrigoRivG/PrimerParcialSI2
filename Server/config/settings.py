@@ -16,6 +16,10 @@ import dj_database_url
 import os
 from dotenv import load_dotenv
 
+
+from decouple import config
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
