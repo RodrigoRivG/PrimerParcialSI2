@@ -27,7 +27,7 @@ const AddProd = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:8000/api/products/create/", {
+      const res = await fetch("primerparcialsi2-production-9a4d.up.railway.app/api/products/create/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
