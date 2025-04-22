@@ -1,0 +1,2 @@
+C:/ParcialSI2/PrimerParcialSI2-master/app_movil/android/app/.cxx/Debug/5e3h201a/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/ParcialSI2/PrimerParcialSI2-master/app_movil/android/app/.cxx/Debug/5e3h201a/armeabi-v7a/CMakeFiles/rebuild_cache.dir

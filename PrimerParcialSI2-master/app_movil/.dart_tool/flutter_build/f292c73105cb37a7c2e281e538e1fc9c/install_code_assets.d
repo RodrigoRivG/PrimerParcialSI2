@@ -1,0 +1,1 @@
+ C:\\ParcialSI2\\PrimerParcialSI2-master\\app_movil\\.dart_tool\\flutter_build\\f292c73105cb37a7c2e281e538e1fc9c\\native_assets.json: 
