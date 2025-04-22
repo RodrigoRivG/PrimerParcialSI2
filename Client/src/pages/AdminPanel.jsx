@@ -10,10 +10,12 @@ import {
   FaChartBar,
   FaBook,
 } from "react-icons/fa";
+
 import AdminProducts from "../components/adminProducts";
 import AdminClientes from "../components/adminClientes";
 import Bitacora from "../components/bitacora";
 import Reportes from "../components/reportes";
+import AddProd from "../components/adminAddProd";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -46,6 +48,10 @@ const AdminPanel = () => {
       ruta: "admin/bitacora",
       icon: <FaBook size={30} />,
     },
+    {
+      nombre: "Agregar Producto",
+      ruta: "admin/add/product",
+    }
   ];
 
   const handleClick = (nombre) => {
@@ -124,6 +130,7 @@ const AdminPanel = () => {
             { seccionActiva === "Clientes" && <AdminClientes /> }
             { seccionActiva === "Reportes" && <Reportes /> }
             { seccionActiva === "Bitácora" && <Bitacora /> }
+            { seccionActiva === "Agregar Producto" && <AddProd /> }
           </div>
         </div>
       </div>

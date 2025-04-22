@@ -23,7 +23,14 @@ const AppRouter = () => {
               </PrivateRoute>
             }
           />
-          <Route path="/admin" element={<AdminPanel />}/>
+          
+          <Route 
+            path="/admin" 
+            element={
+              <PrivateRoute role="Admin">
+                <AdminPanel />
+              </PrivateRoute>
+            }/>
         </Routes>
       </Router>
     </>

@@ -1,4 +1,5 @@
 from django.db import models
+#from django.conf import settings
 
 class Usuarios(models.Model):
     nombre = models.CharField(max_length=55)
@@ -19,7 +20,17 @@ class Bitacora(models.Model):
 
     class Meta:
         db_table = 'bitacora'
-        managed = False  # Muy importante para que Django NO la cree ni la migre
+        managed = False  
+
+
+class TokenDispositivo(models.Model):
+    usuario = models.ForeignKey('usuarios.Usuarios', on_delete=models.CASCADE, related_name='tokens')
+    token_fcm = models.TextField(unique=True)
+    creado_en = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'tokenNotf'
+        managed = True  
 
 
 

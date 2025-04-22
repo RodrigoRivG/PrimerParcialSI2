@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import check_password
 from django.views.decorators.csrf import csrf_exempt
 from .models import Usuarios
 from .models import Bitacora
+from .models import TokenDispositivo
 from django.http import JsonResponse
 from django.conf import settings
 from datetime import datetime, timedelta
@@ -105,6 +106,30 @@ def ver_bitacora(request):
     ]
 
     return JsonResponse(data, safe=False)
+
+
+@csrf_exempt
+def registrar_token_fcm(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            usuario_id = data.get('usuario_id')
+            token_fcm = data.get('token_fcm')
+
+            if not usuario_id or not token_fcm:
+                return JsonResponse({'error': 'Datos incompletos'}, status=400)
+            
+            # Evitar duplicados
+            token_obj, created = TokenDispositivo.objects.get_or_create(
+                usuario_id=usuario_id,
+                token_fcm=token_fcm
+            )
+
+            return JsonResponse({'success': True, 'nuevo': created})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Método no permitido'}, status=405)
 
 
 # funciones auxiliares

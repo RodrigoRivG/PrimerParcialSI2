@@ -40,7 +40,7 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 # ALLOWED_HOSTS = ['192.168.0.6', 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
-ALLOWED_HOSTS = ['primerparcialsi2-production.up.railway.app']
+ALLOWED_HOSTS = ['primerparcialsi2-production.up.railway.app', 'localhost']
 
 
 # Application definition
